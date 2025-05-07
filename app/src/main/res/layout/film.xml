@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary">
+
+    <ImageView
+        android:id="@+id/img_detail_movie"
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_detail_title_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:textColor="@color/cream"
+        android:layout_marginTop="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/img_detail_movie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/ll_detail_quantity_movie"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_detail_title_movie"
+        app:layout_constraintBottom_toTopOf="@+id/ll_detail_price_movie">
+
+        <TextView
+            android:id="@+id/tv_detail_quantity_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quantity :"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:layout_marginEnd="20dp"/>
+
+        <EditText
+            android:id="@+id/et_detail_quantity_movie"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:inputType="number"
+            android:gravity="center"
+            android:background="@drawable/border_detail_quantity" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_detail_price_movie"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="30sp"
+        app:layout_constraintTop_toBottomOf="@id/ll_detail_quantity_movie"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/tv_detail_price_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Price"
+            android:textSize="30sp"
+            android:layout_marginEnd="20sp"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="5dp"
+            android:textColor="@color/yellow"
+            android:background="@drawable/border_detail_price"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_detail_purchase_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:text="Buy"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@drawable/border_detail_purchase"/>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

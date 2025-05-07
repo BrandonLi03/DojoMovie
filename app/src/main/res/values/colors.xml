@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="grey">#808080</color>
+    <color name="orange">#FF5722</color>
+    <color name="red">#FF0000</color>
+    <color name="holo_red_dark">#FFCC0000</color>
+    <color name="primary">#FF18181B</color>
+    <color name="yellow">#FFFFA600</color>
+    <color name="transparent">#00000000</color>
+    <color name="cream">#FFFFEECF</color>
+    <color name="mtrl_textinput_default_box_stroke_color">@color/yellow</color>
+</resources>

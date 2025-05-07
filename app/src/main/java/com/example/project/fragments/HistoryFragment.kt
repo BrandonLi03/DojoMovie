@@ -1,0 +1,60 @@
+package com.example.project.fragments
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.project.adapter.TransactionAdapter
+import com.example.project.database.DatabaseHelper
+import com.example.project.databinding.HistoryFragmentBinding
+import com.example.project.model.Transaction
+import com.example.project.page.FilmPage
+
+class HistoryFragment : Fragment() {
+
+    private lateinit var binding: HistoryFragmentBinding
+    private lateinit var transactionRecyclerView: RecyclerView
+    private lateinit var databaseHelper: DatabaseHelper
+    private lateinit var transactionAdapter: TransactionAdapter
+    val userId = activity?.intent?.getIntExtra("USER_ID", -1) ?: -1
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = HistoryFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        databaseHelper = DatabaseHelper(requireContext())
+        transactionRecyclerView = binding.transactionRecyclerView
+
+        setUpRecycler()
+    }
+
+    private fun setUpRecycler() {
+        val arrayList = databaseHelper.getTransaction(userId)
+        Log.d("DEBUG", "Total movies: ${arrayList.size}")
+        transactionAdapter = TransactionAdapter(arrayList, object: TransactionAdapter.OnItemClickListener{
+            override fun onItemClick(item: Transaction) {
+                // pindah page beserta passing itemnya
+                val intent = Intent(requireContext(), FilmPage::class.java)
+
+                // passing item yang di klik
+                intent.putExtra("movieId", item.film_id)
+                startActivity(intent)
+            }
+        })
+        transactionRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        transactionRecyclerView.adapter = transactionAdapter
+    }
+}
