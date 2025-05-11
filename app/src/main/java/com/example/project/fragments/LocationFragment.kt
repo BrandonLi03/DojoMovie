@@ -21,7 +21,6 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.location_fragment, container, false)
 
         val mapFragment = childFragmentManager
@@ -33,8 +32,6 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        // Add a marker in Sydney and move the camera
         val DoJoMovie = LatLng(-6.2088, 106.8456)
         mMap.addMarker(MarkerOptions().position(DoJoMovie).title("DoJo Movie"))
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(DoJoMovie, 20f))
