@@ -1,6 +1,7 @@
 package com.example.project.page
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.project.fragments.HistoryFragment
@@ -12,11 +13,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainPage : AppCompatActivity() {
     lateinit var bottomNav : BottomNavigationView
-    val userId = intent.getIntExtra("USER_ID", -1)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main)
+        val userId = intent.getIntExtra("USER_ID", -1)
+        Log.d("MainPage", "Received USER_ID: $userId")
 
         bottomNav = findViewById(R.id.bottomNav)
 
@@ -27,20 +29,35 @@ class MainPage : AppCompatActivity() {
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home -> {
-                    loadFragment(HomeFragment())
+                    val homeFragment = HomeFragment()
+                    val bundle = Bundle()
+                    bundle.putInt("USER_ID", userId)
+                    homeFragment.arguments = bundle
+                    loadFragment(homeFragment)
                     true
                 }
                 R.id.history -> {
-                    intent.putExtra("USER_ID", userId)
-                    loadFragment(HistoryFragment())
+                    val historyFragment = HistoryFragment()
+                    val bundle = Bundle()
+                    bundle.putInt("USER_ID", userId)
+                    historyFragment.arguments = bundle
+                    loadFragment(historyFragment)
                     true
                 }
                 R.id.location -> {
-                    loadFragment(LocationFragment())
+                    val locationFragment = LocationFragment()
+                    val bundle = Bundle()
+                    bundle.putInt("USER_ID", userId)
+                    locationFragment.arguments = bundle
+                    loadFragment(locationFragment)
                     true
                 }
                 R.id.profile -> {
-                    loadFragment(ProfileFragment())
+                    val profileFragment = ProfileFragment()
+                    val bundle = Bundle()
+                    bundle.putInt("USER_ID", userId)
+                    profileFragment.arguments = bundle
+                    loadFragment(profileFragment)
                     true
                 }
                 else -> false

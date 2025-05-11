@@ -8,6 +8,7 @@ import android.text.Spanned
 import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -43,13 +44,13 @@ class OTPPage : AppCompatActivity() {
         val button = findViewById<Button>(R.id.buttonclick)
         val otp = findViewById<EditText>(R.id.otp)
         var code = getRandomString(6)
+        val userId = intent.getIntExtra("USER_ID", -1)
 
         otp.setText(code)
 
         button.setOnClickListener {
             if (otp.text.toString() == code) {
                 val intent = Intent(this@OTPPage, MainPage::class.java)
-                val userId = intent.getIntExtra("USER_ID", -1)
                 intent.putExtra("USER_ID", userId)
                 startActivity(intent)
             } else {

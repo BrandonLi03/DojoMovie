@@ -23,13 +23,15 @@ class HistoryFragment : Fragment() {
     private lateinit var transactionRecyclerView: RecyclerView
     private lateinit var databaseHelper: DatabaseHelper
     private lateinit var transactionAdapter: TransactionAdapter
-    val userId = activity?.intent?.getIntExtra("USER_ID", -1) ?: -1
+    private var userId: Int = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = HistoryFragmentBinding.inflate(inflater, container, false)
+        userId = arguments?.getInt("USER_ID", -1) ?: -1
+
         return binding.root
     }
 
@@ -43,7 +45,7 @@ class HistoryFragment : Fragment() {
 
     private fun setUpRecycler() {
         val arrayList = databaseHelper.getTransaction(userId)
-        Log.d("DEBUG", "Total movies: ${arrayList.size}")
+        Log.d("DEBUG", "Total movies: ${arrayList.size} user: $userId")
         transactionAdapter = TransactionAdapter(arrayList, object: TransactionAdapter.OnItemClickListener{
             override fun onItemClick(item: Transaction) {
                 // pindah page beserta passing itemnya
