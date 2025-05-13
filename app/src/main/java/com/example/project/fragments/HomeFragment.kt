@@ -34,7 +34,6 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        fetchDataAndDisplay()
         val view = inflater.inflate(R.layout.home_fragment, container, false)
 
         userId = arguments?.getInt("USER_ID", -1) ?: -1
@@ -57,6 +56,7 @@ class HomeFragment : Fragment() {
 
         list.adapter = adapter
 
+        fetchDataAndDisplay()
 
         return view
     }

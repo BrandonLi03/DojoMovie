@@ -2,6 +2,8 @@ package com.example.project.page
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
@@ -40,6 +42,20 @@ class FilmPage : AppCompatActivity() {
             titleTextView.text = movie.title
             priceTextView.text = "Rp. " + movie.price.toString()
         }
+
+        movieQuantity.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                priceTextView.text = "Rp. " + (movie?.price?.times(s.toString().toIntOrNull() ?: 0)).toString()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+        })
+
 
         binding.btnDetailPurchaseMovie.setOnClickListener {
             val quantity = movieQuantity.text.toString().toIntOrNull()
