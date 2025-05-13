@@ -64,7 +64,7 @@ class LoginPage : AppCompatActivity() {
         regToLog.movementMethod = LinkMovementMethod.getInstance()
 
         loginButton.setOnClickListener {
-            var data = db.readData()
+            var data = db.getUser()
             val user = data.find { it.phone == phone.text.toString() && it.password == password.text.toString() }
             val checkphone = data.find { it.phone == phone.text.toString() }
 

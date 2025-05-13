@@ -34,18 +34,10 @@ class DatabaseHelper(var context: Context): SQLiteOpenHelper(context, "Dojo_Movi
                 "(null, 'Crimson City', 'https://images.unsplash.com/photo-1517602302552-471fe67acf66', 30000)" )
     }
 
-    fun insertDummyTransaction(db: SQLiteDatabase?) {
-        db?.execSQL("insert into Transactions(Id, filmId, Quantity, userId) values " +
-                " (null, 1, 2, 1)" )
-    }
-
     override fun onCreate(db: SQLiteDatabase?) {
         createUserTable(db)
         createFilmTable(db)
         createTransactionTable(db)
-
-        insertDummyFilm(db)
-        insertDummyTransaction(db)
     }
 
     fun insertTransaction(filmId: Int, Quantity: Int, userId: Int){
@@ -62,7 +54,7 @@ class DatabaseHelper(var context: Context): SQLiteOpenHelper(context, "Dojo_Movi
         }
     }
 
-    fun insertData(user: User){
+    fun insertUser(user: User){
         val db = this.writableDatabase
         var cv = ContentValues()
         cv.put("phone", user.phone)
@@ -75,7 +67,26 @@ class DatabaseHelper(var context: Context): SQLiteOpenHelper(context, "Dojo_Movi
         }
     }
 
-    fun readData() : MutableList<User>{
+    fun insertFilm(film: Film) {
+        val db = this.writableDatabase
+        val cv = ContentValues().apply {
+            put("filmImage", film.image)
+            put("filmPrice", film.price)
+            put("filmTitle", film.title)
+        }
+
+        val result = db.insert("Films", null, cv)
+
+        (context as? android.app.Activity)?.runOnUiThread {
+            if (result == -1L) {
+                Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun getUser() : MutableList<User>{
         var list : MutableList<User> = ArrayList()
         val db = this.readableDatabase
         val query = "SELECT * FROM Users"
@@ -170,5 +181,13 @@ class DatabaseHelper(var context: Context): SQLiteOpenHelper(context, "Dojo_Movi
         db?.execSQL("drop table if exists Transactions")
         db?.execSQL("drop table if exists Users")
         onCreate(db)
+    }
+
+    fun isFilmExists(title: String): Boolean {
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM Films WHERE filmTitle = ?", arrayOf(title))
+        val exists = cursor.count > 0
+        cursor.close()
+        return exists
     }
 }

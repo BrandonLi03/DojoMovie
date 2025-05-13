@@ -75,9 +75,9 @@ class RegisterPage : AppCompatActivity() {
             } else {
                 var user = User(phone.text.toString(), check1)
                 var db = DatabaseHelper(context)
-                db.insertData(user)
+                db.insertUser(user)
 
-                val intent = Intent(this@RegisterPage, OTPPage::class.java)
+                val intent = Intent(this@RegisterPage, LoginPage::class.java)
                 startActivity(intent)
             }
         }

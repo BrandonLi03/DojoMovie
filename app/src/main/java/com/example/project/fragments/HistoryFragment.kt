@@ -6,16 +6,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project.adapter.TransactionAdapter
 import com.example.project.database.DatabaseHelper
 import com.example.project.databinding.HistoryFragmentBinding
-import com.example.project.model.Transaction
-import com.example.project.page.FilmPage
 
 class HistoryFragment : Fragment() {
 
@@ -46,16 +42,7 @@ class HistoryFragment : Fragment() {
     private fun setUpRecycler() {
         val arrayList = databaseHelper.getTransaction(userId)
         Log.d("DEBUG", "Total movies: ${arrayList.size} user: $userId")
-        transactionAdapter = TransactionAdapter(arrayList, object: TransactionAdapter.OnItemClickListener{
-            override fun onItemClick(item: Transaction) {
-                // pindah page beserta passing itemnya
-                val intent = Intent(requireContext(), FilmPage::class.java)
-
-                // passing item yang di klik
-                intent.putExtra("movieId", item.film_id)
-                startActivity(intent)
-            }
-        })
+        transactionAdapter = TransactionAdapter(arrayList)
         transactionRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         transactionRecyclerView.adapter = transactionAdapter
     }

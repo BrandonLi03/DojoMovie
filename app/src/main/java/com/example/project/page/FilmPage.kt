@@ -8,7 +8,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.project.R
 import com.example.project.database.DatabaseHelper
 import com.example.project.databinding.FilmBinding
@@ -33,14 +32,13 @@ class FilmPage : AppCompatActivity() {
         movieImageView = findViewById(R.id.img_detail_movie)
         movieQuantity = findViewById(R.id.et_detail_quantity_movie)
 
-        val movieId = intent.getIntExtra("movieId", 0)
+        val filmId = intent.getIntExtra("filmId", 0)
         val userId = intent.getIntExtra("USER_ID", -1)
-        Log.d("DetailPage", "Received USER_ID: $userId")
-        val movie = databaseHelper.getSpecificFilm(movieId)
+        Log.d("DetailPage", "Received USER_ID: $userId and filmId: $filmId")
+        val movie = databaseHelper.getSpecificFilm(filmId)
         if (movie != null) {
             titleTextView.text = movie.title
             priceTextView.text = "Rp. " + movie.price.toString()
-            Glide.with(this).load(movie.image).into(movieImageView)
         }
 
         binding.btnDetailPurchaseMovie.setOnClickListener {
@@ -49,8 +47,8 @@ class FilmPage : AppCompatActivity() {
                 Toast.makeText(this, "The quantity can't be empty and must be more than 0", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }else{
-                databaseHelper.insertTransaction(movieId, quantity, userId)
-                Log.d("TransactionLog", "User $userId membeli Movie ID: $movieId dengan Quantity: $quantity")
+                databaseHelper.insertTransaction(filmId, quantity, userId)
+                Log.d("TransactionLog", "User $userId membeli Movie ID: $filmId dengan Quantity: $quantity")
                 Toast.makeText(this, "Purchase success", Toast.LENGTH_SHORT).show()
 
                 val intent = Intent(this, MainPage::class.java)
