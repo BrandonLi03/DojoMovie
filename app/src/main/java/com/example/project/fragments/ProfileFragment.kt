@@ -2,6 +2,7 @@ package com.example.project.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract.Data
 import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,23 +10,34 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.PopupWindow
+import android.widget.TextView
 import com.example.project.page.LoginPage
 import com.example.project.R
+import com.example.project.database.DatabaseHelper
 
 class ProfileFragment : Fragment() {
 
     private lateinit var button: Button
+    private lateinit var db: DatabaseHelper
+    private var userId = -1
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        db = DatabaseHelper(requireContext())
+        userId = arguments?.getInt("USER_ID", -1) ?: -1
         return inflater.inflate(R.layout.profile_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val nomor = view.findViewById<TextView>(R.id.nomor)
         button = view.findViewById(R.id.buttonclick)
+
+        val data = db.getUser()
+        val user = data.find { it.id == userId }
+        nomor.text = user?.phone
 
         button.setOnClickListener {
             showPopupWindow(it)
