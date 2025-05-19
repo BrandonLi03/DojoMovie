@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.project.R
 import com.example.project.model.Film
 
+// test
 class Adapter(
     private val filmList: List<Film>,
     private val listener: OnItemClickListener
