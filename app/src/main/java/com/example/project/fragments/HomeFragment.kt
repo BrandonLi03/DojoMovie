@@ -1,8 +1,6 @@
 package com.example.project.fragments
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -81,11 +79,5 @@ class HomeFragment : Fragment() {
                 }
             }
         }
-    }
-
-
-    private fun getBitmapFromPath(imagePath: String): Bitmap? {
-        val file = File(imagePath)
-        return if (file.exists()) BitmapFactory.decodeFile(file.absolutePath) else null
     }
 }

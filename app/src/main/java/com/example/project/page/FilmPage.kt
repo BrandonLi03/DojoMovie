@@ -41,6 +41,14 @@ class FilmPage : AppCompatActivity() {
         if (movie != null) {
             titleTextView.text = movie.title
             priceTextView.text = "Rp. " + movie.price.toString()
+
+            // Set image using resource name from movie.image
+            val resId = resources.getIdentifier(movie.image, "drawable", packageName)
+            if (resId != 0) {
+                movieImageView.setImageResource(resId)
+            } else {
+                Log.e("FilmPage", "Image not found for name: ${movie.image}")
+            }
         }
 
         movieQuantity.addTextChangedListener(object : TextWatcher {

@@ -1,5 +1,7 @@
 package com.example.project.page
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -22,6 +24,7 @@ import com.example.project.database.DatabaseHelper
 import com.example.project.R
 
 class LoginPage : AppCompatActivity() {
+    @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -69,10 +72,17 @@ class LoginPage : AppCompatActivity() {
             val checkphone = data.find { it.phone == phone.text.toString() }
 
             if (user != null) {
+                val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+                val editor = sharedPreferences.edit()
+
+                editor.putString("USER_PHONE", user.phone)
+                editor.apply()
+
                 val intent = Intent(this@LoginPage, OTPPage::class.java)
                 intent.putExtra("USER_ID", user.id)
                 startActivity(intent)
-            } else if (checkphone != null) {
+            }
+            else if (checkphone != null) {
                 Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Phone number is incorrect", Toast.LENGTH_SHORT).show()

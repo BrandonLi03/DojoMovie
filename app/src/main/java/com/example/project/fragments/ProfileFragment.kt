@@ -1,5 +1,6 @@
 package com.example.project.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
@@ -8,9 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.PopupWindow
+import android.widget.TextView
 import com.example.project.page.LoginPage
 import com.example.project.R
+import com.example.project.database.DatabaseHelper
+import com.example.project.model.User
 
 class ProfileFragment : Fragment() {
 
@@ -26,6 +31,11 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         button = view.findViewById(R.id.buttonclick)
+        var phone = view.findViewById<TextView>(R.id.phone)
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+
+        val userPhone = sharedPreferences.getString("USER_PHONE", "000")
+        phone.text = userPhone
 
         button.setOnClickListener {
             showPopupWindow(it)
@@ -52,6 +62,11 @@ class ProfileFragment : Fragment() {
 
         val logout = popupView.findViewById<Button>(R.id.btnConfirm)
         logout.setOnClickListener {
+            val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.clear()
+            editor.apply()
+
             val intent = Intent(requireContext(), LoginPage::class.java)
             startActivity(intent)
         }

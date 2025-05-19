@@ -5,9 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.project.R
 import com.example.project.model.Transaction
 
@@ -20,13 +18,22 @@ class TransactionAdapter(private val TransactionList: ArrayList<Transaction>) : 
         private var movieQuantity = itemView.findViewById<TextView>(R.id.tv_transaction_movie_quantity)
         private var movieTotal = itemView.findViewById<TextView>(R.id.tv_transaction_movie_total)
 
+
         fun bind(transaction: Transaction) {
             movieTitle.text = transaction.film_title
-            moviePrice.text = "Price : " + "Rp. " + transaction.film_price.toString()
-            movieQuantity.text = "Quantity : " + transaction.quantity.toString()
-            movieTotal.text = "Total : " + "Rp. ${(transaction.film_price ?: 0) * (transaction.quantity ?: 0)}"
+            moviePrice.text = "Price : Rp. ${transaction.film_price}"
+            movieQuantity.text = "Quantity : ${transaction.quantity}"
+            movieTotal.text = "Total : Rp. ${(transaction.film_price ?: 0) * (transaction.quantity ?: 0)}"
 
-            Glide.with(itemView.context).load(transaction.film_image).into(movieImage)
+            val resId = itemView.context.resources.getIdentifier(
+                transaction.film_image,
+                "drawable",
+                itemView.context.packageName
+            )
+
+            if (resId != 0) {
+                movieImage.setImageResource(resId)
+            }
         }
     }
 
