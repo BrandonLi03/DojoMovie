@@ -52,7 +52,7 @@ class LoginPage : AppCompatActivity() {
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
                 ds.isUnderlineText = true
-                ds.color = Color.parseColor("#FFA600")
+                ds.color = Color.parseColor("#00B9AE")
             }
         }
 

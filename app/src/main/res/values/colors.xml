@@ -11,4 +11,8 @@
     <color name="transparent">#00000000</color>
     <color name="cream">#FFFFEECF</color>
     <color name="mtrl_textinput_default_box_stroke_color">@color/yellow</color>
+    <color name="Background">#21242D</color>
+    <color name="BlackBackground">#16181E</color>
+    <color name="Cyan">#00B9AE</color>
+    <color name="Blue">#6EACDA</color>
 </resources>

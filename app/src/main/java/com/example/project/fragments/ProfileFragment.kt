@@ -33,7 +33,6 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val nomor = view.findViewById<TextView>(R.id.nomor)
         button = view.findViewById(R.id.buttonclick)
         var phone = view.findViewById<TextView>(R.id.phone)
 
@@ -43,7 +42,6 @@ class ProfileFragment : Fragment() {
 
         val data = db.getUser()
         val user = data.find { it.id == userId }
-        nomor.text = user?.phone
 
         button.setOnClickListener {
             showPopupWindow(it)

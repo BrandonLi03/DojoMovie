@@ -5,13 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
+    android:background="@color/Background"
     tools:context=".page.RegisterPage">
 
     <LinearLayout
         android:layout_width="350dp"
         android:layout_height="600dp"
-        android:background="@color/primary"
+        android:background="@color/Background"
         android:gravity="center|fill"
         android:orientation="vertical"
         android:padding="20dp"
@@ -24,9 +24,9 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:srcCompat="@drawable/logos"
             android:layout_gravity="center"/>
 
         <TextView
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
             app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/yellow"
+            app:boxStrokeColor="@color/Cyan"
             app:boxStrokeWidth="2dp"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
             app:boxBackgroundColor="@color/white"
-            app:boxStrokeColor="@color/yellow"
+            app:boxStrokeColor="@color/Cyan"
             app:boxStrokeWidth="2dp"
             app:boxCornerRadiusBottomEnd="20dp"
             app:boxCornerRadiusBottomStart="20dp"
