@@ -6,17 +6,17 @@
     android:layout_height="match_parent"
     android:background="@color/BlackBackground">
 
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        android:id="@+id/back_button"-->
-<!--        android:layout_marginTop="10dp"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:layout_width="70dp"-->
-<!--        android:layout_height="70dp"-->
-<!--        android:drawableStart="@drawable/back_arrow"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:background="@color/transparent"/>-->
+    <androidx.appcompat.widget.AppCompatButton
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/back_button"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:drawableStart="@drawable/back_arrow"
+        android:textColor="@color/white"
+        android:background="@color/transparent"/>
 
     <ImageView
         android:id="@+id/img_detail_movie"

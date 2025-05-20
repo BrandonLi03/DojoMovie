@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -33,6 +34,7 @@ class FilmPage : AppCompatActivity() {
         priceTextView = findViewById(R.id.tv_detail_price_movie)
         movieImageView = findViewById(R.id.img_detail_movie)
         movieQuantity = findViewById(R.id.et_detail_quantity_movie)
+        var back_btn = findViewById<Button>(R.id.back_button)
 
         val filmId = intent.getIntExtra("filmId", 0)
         val userId = intent.getIntExtra("USER_ID", -1)
@@ -80,6 +82,13 @@ class FilmPage : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
+        }
+
+        back_btn.setOnClickListener{
+            val intent = Intent(this, MainPage::class.java)
+            intent.putExtra("USER_ID", userId)
+            startActivity(intent)
+            finish()
         }
     }
 
