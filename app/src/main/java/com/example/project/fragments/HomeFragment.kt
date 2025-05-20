@@ -18,7 +18,6 @@ import com.example.project.page.FilmPage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.File
 
 class HomeFragment : Fragment() {
     private lateinit var list: RecyclerView
