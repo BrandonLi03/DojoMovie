@@ -1,6 +1,5 @@
 package com.example.project.adapter
 
-import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.project.R
 import com.example.project.model.Film
-import java.io.File
 
 class Adapter(
     private val filmList: List<Film>,
@@ -30,9 +28,12 @@ class Adapter(
     override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
         val film = filmList[position]
 
-        val file = File(film.image)
-        val bitmap = if (file.exists()) BitmapFactory.decodeFile(file.absolutePath) else null
-        holder.image.setImageBitmap(bitmap)
+        val context = holder.itemView.context
+        val resId = context.resources.getIdentifier(film.image, "drawable", context.packageName)
+
+        if (resId != 0) {
+            holder.image.setImageResource(resId)
+        }
 
         holder.title.text = film.title
         holder.price.text = film.price.toString()

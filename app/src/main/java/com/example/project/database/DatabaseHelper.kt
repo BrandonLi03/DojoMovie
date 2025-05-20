@@ -25,15 +25,6 @@ class DatabaseHelper(var context: Context): SQLiteOpenHelper(context, "Dojo_Movi
         db?.execSQL(create_user_table)
     }
 
-    fun insertDummyFilm(db: SQLiteDatabase?) {
-        db?.execSQL("insert into Films(filmId, filmTitle, filmImage, filmPrice) values " +
-                " (null, 'Neon Horizon', 'https://images.unsplash.com/photo-1606112219348-204d7d8b94ee', 20000), " +
-                " (null, 'Skyward Dreams', 'https://images.unsplash.com/photo-1528909514045-2fa4ac7a08ba', 30000), " +
-                "(null, 'The Lost Jungle', 'https://images.unsplash.com/photo-1602419271426-b438b08fc6c9', 25000)," +
-                "(null, 'Galactic Drift', 'https://images.unsplash.com/photo-1618681803263-4062bfb2444b', 40000)," +
-                "(null, 'Crimson City', 'https://images.unsplash.com/photo-1517602302552-471fe67acf66', 30000)" )
-    }
-
     override fun onCreate(db: SQLiteDatabase?) {
         createUserTable(db)
         createFilmTable(db)

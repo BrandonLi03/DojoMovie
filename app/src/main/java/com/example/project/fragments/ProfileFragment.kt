@@ -1,5 +1,6 @@
 package com.example.project.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.ContactsContract.Data
@@ -34,6 +35,11 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val nomor = view.findViewById<TextView>(R.id.nomor)
         button = view.findViewById(R.id.buttonclick)
+        var phone = view.findViewById<TextView>(R.id.phone)
+
+        val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val userPhone = sharedPreferences.getString("USER_PHONE", "000")
+        phone.text = userPhone
 
         val data = db.getUser()
         val user = data.find { it.id == userId }
@@ -64,6 +70,11 @@ class ProfileFragment : Fragment() {
 
         val logout = popupView.findViewById<Button>(R.id.btnConfirm)
         logout.setOnClickListener {
+            val sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+            val editor = sharedPreferences.edit()
+            editor.clear()
+            editor.apply()
+
             val intent = Intent(requireContext(), LoginPage::class.java)
             startActivity(intent)
         }

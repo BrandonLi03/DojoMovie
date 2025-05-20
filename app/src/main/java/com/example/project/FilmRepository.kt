@@ -42,8 +42,9 @@ class FilmRepository(private val context: Context) {
 
                 val film = Film(title, image, price)
 
-                if (i == 0) film.image = "res/drawable/poster.png"
-                else if (i == 1) film.image = "res/drawable/poster1.png"
+                if (i == 0) film.image = "poster"
+                else if (i == 1) film.image = "poster1"
+                else if (i == 2) film.image = "poster2"
 
                 if (!db.isFilmExists(title)) {
                     db.insertFilm(film)
