@@ -81,10 +81,16 @@ class LoginPage : AppCompatActivity() {
                 intent.putExtra("USER_ID", user.id)
                 startActivity(intent)
             }
+            else if (phone.text.toString().isEmpty()) {
+                Toast.makeText(this, "Phone number field must be filled", Toast.LENGTH_SHORT).show()
+            }
+            else if (password.text.toString().isEmpty()) {
+                Toast.makeText(this, "Password field must be filled", Toast.LENGTH_SHORT).show()
+            }
             else if (checkphone != null) {
                 Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Phone number is incorrect", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Phone number is not found", Toast.LENGTH_SHORT).show()
             }
         }
     }

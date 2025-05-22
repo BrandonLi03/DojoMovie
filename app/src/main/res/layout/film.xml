@@ -100,10 +100,10 @@
             android:id="@+id/btn_detail_purchase_movie"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
+            android:background="@drawable/buttonstateapp"
             android:text="Buy"
-            android:textSize="20sp"
             android:textColor="@color/white"
-            android:background="@drawable/border_detail_purchase"/>
+            android:textSize="20sp" />
     </LinearLayout>
 
 

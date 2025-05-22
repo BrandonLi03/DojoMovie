@@ -67,14 +67,23 @@ class RegisterPage : AppCompatActivity() {
             val len = password.text.length
             val check1 = password.text.toString()
             val check2 = confPassword.text.toString()
-            if (len < 8) {
+            val number = phone.text.toString()
+            val db = DatabaseHelper(context)
+
+            val find = db.getUser()
+            val userExist = find.find { it.phone == phone.text.toString() }
+
+            if (len == 0 || number.isEmpty() || check2.isEmpty()) {
+                Toast.makeText(this, "All fields must be filled", Toast.LENGTH_SHORT).show()
+            } else if (len < 8) {
                 Toast.makeText(this, "Password must be at least 8 characters", Toast.LENGTH_SHORT)
                     .show()
             } else if (check1 != check2) {
                 Toast.makeText(this, "Passwords are not the same", Toast.LENGTH_SHORT).show()
+            } else if (userExist != null) {
+                Toast.makeText(this, "Phone number already used", Toast.LENGTH_SHORT).show()
             } else {
-                var user = User(phone.text.toString(), check1)
-                var db = DatabaseHelper(context)
+                val user = User(phone.text.toString(), check1)
                 db.insertUser(user)
 
                 val intent = Intent(this@RegisterPage, LoginPage::class.java)

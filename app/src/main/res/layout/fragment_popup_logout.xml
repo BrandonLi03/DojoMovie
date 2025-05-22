@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Confirm"
-                android:backgroundTint="@color/Cyan"
+                android:backgroundTint="#009E94"
                 android:textColor="@android:color/white"
                 android:padding="10dp"
                 android:minWidth="100dp"

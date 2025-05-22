@@ -40,9 +40,6 @@ class ProfileFragment : Fragment() {
         val userPhone = sharedPreferences.getString("USER_PHONE", "000")
         phone.text = userPhone
 
-        val data = db.getUser()
-        val user = data.find { it.id == userId }
-
         button.setOnClickListener {
             showPopupWindow(it)
         }
